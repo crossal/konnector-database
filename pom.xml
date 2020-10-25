@@ -20,26 +20,9 @@
 			<artifactId>liquibase-maven-plugin</artifactId>
 			<version>4.1.0</version>
 		</dependency>
-
-		<!--<dependency>-->
-			<!--<groupId>org.apache.maven.plugins</groupId>-->
-			<!--<artifactId>maven-resources-plugin</artifactId>-->
-			<!--<version>3.2.0</version>-->
-		<!--</dependency>-->
 	</dependencies>
 
 	<build>
-		<!--<resources>-->
-			<!--<resource>-->
-				<!--<directory>src/main/resources</directory>-->
-				<!--<filtering>true</filtering>-->
-			<!--</resource>-->
-			<!--<resource>-->
-				<!--<directory>src/test/resources</directory>-->
-				<!--<filtering>true</filtering>-->
-			<!--</resource>-->
-		<!--</resources>-->
-
 		<extensions>
 			<extension>
 				<groupId>com.github.shyiko.servers-maven-extension</groupId>
@@ -67,14 +50,6 @@
 					<password>${settings.servers.konnector_database.password}</password>
 					<outputChangeLogFile>src/main/resources/liquibase-outputChangeLog.xml</outputChangeLogFile>
 				</configuration>
-				<!--<executions>-->
-					<!--<execution>-->
-						<!--<phase>process-resources</phase>-->
-						<!--<goals>-->
-							<!--<goal>update</goal>-->
-						<!--</goals>-->
-					<!--</execution>-->
-				<!--</executions>-->
 			</plugin>
 		</plugins>
 	</build>
