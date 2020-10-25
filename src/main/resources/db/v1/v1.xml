@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+		xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+			http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+	<changeSet author="alan_cross"  id="18_10_2020_set_strict_sql_mode">
+		<sql dbms="mysql, mariadb" endDelimiter=";" splitStatements="true" stripComments="true">
+			SET sql_mode = 'STRICT_ALL_TABLES';
+		</sql>
+	</changeSet>
+
+	<changeSet author="alan_cross" id="18_10_2020_create_user_table">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="user"/>
+			</not>
+		</preConditions>
+
+		<createTable tableName="user">
+			<column name="id" type="int unsigned">
+				<constraints  primaryKey="true"  nullable="false"/>
+			</column>
+			<column name="email" type="varchar(20)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="username" type="varchar(20)">
+				<constraints nullable="false" unique="true"/>
+			</column>
+			<column name="password" type="binary(16)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="salt" type="binary(16)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="first_name" type="varchar(20)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="last_name" type="varchar(20)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="created_on" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+			<column name="updated_on" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="alan_cross" id="23_10_2020_create_contact_detail_table">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="contact_detail"/>
+			</not>
+		</preConditions>
+
+		<createTable tableName="contact_detail">
+			<column name="id" type="int unsigned">
+				<constraints  primaryKey="true"  nullable="false"/>
+			</column>
+			<column name="name" type="varchar(20)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="value" type="varchar(20)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="created_on" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+			<column name="updated_on" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="alan_cross" id="23_10_2020_create_connection_table">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="connection"/>
+			</not>
+		</preConditions>
+
+		<createTable tableName="connection">
+			<column name="id" type="int unsigned">
+				<constraints  primaryKey="true"  nullable="false"/>
+			</column>
+			<column name="requester_id" type="int unsigned">
+				<constraints nullable="false" references="user(id)" foreignKeyName="fk_connection_requester_id_user_id"/>
+			</column>
+			<column name="requestee_id" type="int unsigned">
+				<constraints nullable="false" references="user(id)" foreignKeyName="fk_connection_requestee_id_user_id"/>
+			</column>
+			<column name="status" type="tinyint unsigned">
+				<constraints nullable="false"/>
+			</column>
+			<column name="created_on" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+			<column name="updated_on" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="alan_cross" id="23_10_2020_create_notification_table">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="notification"/>
+			</not>
+		</preConditions>
+
+		<createTable tableName="notification">
+			<column name="id" type="int unsigned">
+				<constraints  primaryKey="true"  nullable="false"/>
+			</column>
+			<column name="recipient_id" type="int unsigned">
+				<constraints nullable="false" references="user(id)" foreignKeyName="fk_notification_recipient_id_user_id"/>
+			</column>
+			<column name="sender_id" type="int unsigned">
+				<constraints nullable="false" references="user(id)" foreignKeyName="fk_notification_sender_id_user_id"/>
+			</column>
+			<column name="status" type="tinyint unsigned">
+				<constraints nullable="false"/>
+			</column>
+			<column name="type" type="tinyint unsigned">
+				<constraints nullable="false"/>
+			</column>
+			<column name="reference_id" type="int unsigned">
+				<constraints nullable="false"/>
+			</column>
+			<column name="created_on" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+			<column name="updated_on" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="alan_cross" id="23_10_2020_create_verification_table">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="verification"/>
+			</not>
+		</preConditions>
+
+		<createTable tableName="verification">
+			<column name="id" type="int">
+				<constraints  primaryKey="true"  nullable="false"/>
+			</column>
+			<column name="user_id" type="int unsigned">
+				<constraints nullable="false" references="user(id)" foreignKeyName="fk_verification_user_id_user_id"/>
+			</column>
+			<column name="type" type="tinyint unsigned">
+				<constraints nullable="false"/>
+			</column>
+			<column name="status" type="tinyint unsigned">
+				<constraints nullable="false"/>
+			</column>
+			<column name="code" type="tinyint unsigned">
+				<constraints nullable="false"/>
+			</column>
+			<column name="code_attempts_left" type="tinyint unsigned">
+				<constraints nullable="false"/>
+			</column>
+			<column name="url_token" type="varchar(36)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="expires_on" type="datetime">
+				<constraints nullable="false"/>
+			</column>
+			<column name="created_on" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+			<column name="updated_on" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+</databaseChangeLog>
