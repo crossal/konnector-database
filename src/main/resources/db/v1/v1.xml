@@ -19,7 +19,7 @@
 		</preConditions>
 
 		<createTable tableName="user">
-			<column name="id" type="int unsigned">
+			<column name="id" type="int unsigned" autoIncrement="true">
 				<constraints  primaryKey="true"  nullable="false"/>
 			</column>
 			<column name="email" type="varchar(20)">
@@ -57,7 +57,7 @@
 		</preConditions>
 
 		<createTable tableName="contact_detail">
-			<column name="id" type="int unsigned">
+			<column name="id" type="int unsigned" autoIncrement="true">
 				<constraints  primaryKey="true"  nullable="false"/>
 			</column>
 			<column name="name" type="varchar(20)">
@@ -83,7 +83,7 @@
 		</preConditions>
 
 		<createTable tableName="connection">
-			<column name="id" type="int unsigned">
+			<column name="id" type="int unsigned" autoIncrement="true">
 				<constraints  primaryKey="true"  nullable="false"/>
 			</column>
 			<column name="requester_id" type="int unsigned">
@@ -112,7 +112,7 @@
 		</preConditions>
 
 		<createTable tableName="notification">
-			<column name="id" type="int unsigned">
+			<column name="id" type="int unsigned" autoIncrement="true">
 				<constraints  primaryKey="true"  nullable="false"/>
 			</column>
 			<column name="recipient_id" type="int unsigned">
@@ -147,7 +147,7 @@
 		</preConditions>
 
 		<createTable tableName="verification">
-			<column name="id" type="int">
+			<column name="id" type="int" autoIncrement="true">
 				<constraints  primaryKey="true"  nullable="false"/>
 			</column>
 			<column name="user_id" type="int unsigned">
