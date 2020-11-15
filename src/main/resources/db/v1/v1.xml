@@ -121,10 +121,10 @@
 			<column name="sender_id" type="int unsigned">
 				<constraints nullable="false" references="user(id)" foreignKeyName="fk_notification_sender_id_user_id"/>
 			</column>
-			<column name="status" type="tinyint unsigned">
+			<column name="type" type="tinyint unsigned">
 				<constraints nullable="false"/>
 			</column>
-			<column name="type" type="tinyint unsigned">
+			<column name="status" type="tinyint unsigned">
 				<constraints nullable="false"/>
 			</column>
 			<column name="reference_id" type="int unsigned">
@@ -147,7 +147,7 @@
 		</preConditions>
 
 		<createTable tableName="verification">
-			<column name="id" type="int" autoIncrement="true">
+			<column name="id" type="int unsigned" autoIncrement="true">
 				<constraints  primaryKey="true"  nullable="false"/>
 			</column>
 			<column name="user_id" type="int unsigned">
