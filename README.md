@@ -8,17 +8,30 @@ Managing the Konnector database
 
 * Create a Maven master password `$ mvn --encrypt-master-password`
 * Store the encrypted master password in ~/.m2/settings-security.xml
+```
+<settingsSecurity>
+    <master>{password}</master>
+</settingsSecurity>
+```
 * Encrypt the database schema password `$ mvn --encrypt-password`
 * Store the encrypted password in ~/.m2/settings.xml under the servers element
 ```
-<server>
-    <id>id</id>
-    <username>username</username>
-    <password>{passoword}</password>
-</server>
+<settings>
+    <servers>
+        <server>
+            <id>konnector_database</id>
+            <username>root</username>
+            <password>{password}</password>
+        </server>
+    </servers>
+</settings>
 ```
 
 ## Running liquibase
 
 * Navigate to the project root
-* Run `$ mvn clean compile liquibase:update`
+* Run `$ mvn clean compile liquibase:update -DdatabaseName=konnector_test`
+
+<br/>
+
+* Default databaseName is konnector
