@@ -28,10 +28,7 @@
 			<column name="username" type="varchar(254)">
 				<constraints nullable="false" unique="true"/>
 			</column>
-			<column name="password" type="binary(16)">
-				<constraints nullable="false"/>
-			</column>
-			<column name="salt" type="binary(16)">
+			<column name="password" type="char(60)">
 				<constraints nullable="false"/>
 			</column>
 			<column name="first_name" type="varchar(254)">
