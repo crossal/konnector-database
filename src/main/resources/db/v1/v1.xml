@@ -22,19 +22,19 @@
 			<column name="id" type="int unsigned" autoIncrement="true">
 				<constraints  primaryKey="true"  nullable="false"/>
 			</column>
-			<column name="email" type="varchar(254)">
+			<column name="email" type="varchar(255)">
 				<constraints nullable="false" unique="true"/>
 			</column>
-			<column name="username" type="varchar(254)">
+			<column name="username" type="varchar(255)">
 				<constraints nullable="false" unique="true"/>
 			</column>
 			<column name="password" type="char(60)">
 				<constraints nullable="false"/>
 			</column>
-			<column name="first_name" type="varchar(254)">
+			<column name="first_name" type="varchar(255)">
 				<constraints nullable="true"/>
 			</column>
-			<column name="last_name" type="varchar(254)">
+			<column name="last_name" type="varchar(255)">
 				<constraints nullable="true"/>
 			</column>
 			<column name="is_email_verified" type="boolean" defaultValueBoolean="false">
@@ -60,10 +60,10 @@
 			<column name="id" type="int unsigned" autoIncrement="true">
 				<constraints  primaryKey="true"  nullable="false"/>
 			</column>
-			<column name="name" type="varchar(254)">
+			<column name="name" type="varchar(255)">
 				<constraints nullable="false"/>
 			</column>
-			<column name="value" type="varchar(254)">
+			<column name="value" type="varchar(255)">
 				<constraints nullable="false"/>
 			</column>
 			<column name="created_on" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
