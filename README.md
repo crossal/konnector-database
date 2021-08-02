@@ -1,29 +1,37 @@
-# README #
+# Konnector Database
 
-This README would normally document whatever steps are necessary to get your application up and running.
+## What is this repository for?
 
-### What is this repository for? ###
+Managing the Konnector database
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## How do I get set up?
 
-### How do I get set up? ###
+* Create a Maven master password `$ mvn --encrypt-master-password`
+* Store the encrypted master password in ~/.m2/settings-security.xml
+```
+<settingsSecurity>
+    <master>{password}</master>
+</settingsSecurity>
+```
+* Encrypt the database schema password `$ mvn --encrypt-password`
+* Store the encrypted password in ~/.m2/settings.xml under the servers element
+```
+<settings>
+    <servers>
+        <server>
+            <id>konnector_database</id>
+            <username>root</username>
+            <password>{password}</password>
+        </server>
+    </servers>
+</settings>
+```
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+## Running liquibase
 
-### Contribution guidelines ###
+* Navigate to the project root
+* Run `$ mvn clean compile liquibase:update -DdatabaseName=konnector_test`
 
-* Writing tests
-* Code review
-* Other guidelines
+<br/>
 
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* Default databaseName is konnector
