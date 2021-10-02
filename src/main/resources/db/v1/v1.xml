@@ -60,6 +60,9 @@
 			<column name="id" type="int unsigned" autoIncrement="true">
 				<constraints  primaryKey="true"  nullable="false"/>
 			</column>
+			<column name="user_id" type="int unsigned">
+				<constraints nullable="false" references="user(id)" foreignKeyName="fk_contact_detail_user_id_user_id"/>
+			</column>
 			<column name="name" type="varchar(255)">
 				<constraints nullable="false"/>
 			</column>
