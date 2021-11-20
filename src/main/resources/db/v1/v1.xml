@@ -63,7 +63,7 @@
 			<column name="user_id" type="int unsigned">
 				<constraints nullable="false" references="user(id)" foreignKeyName="fk_contact_detail_user_id_user_id"/>
 			</column>
-			<column name="name" type="varchar(255)">
+			<column name="type" type="varchar(255)">
 				<constraints nullable="false"/>
 			</column>
 			<column name="value" type="varchar(255)">
