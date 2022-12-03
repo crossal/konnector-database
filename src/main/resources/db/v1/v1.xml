@@ -127,9 +127,6 @@
 			<column name="type" type="tinyint unsigned">
 				<constraints nullable="false"/>
 			</column>
-			<column name="status" type="tinyint unsigned">
-				<constraints nullable="false"/>
-			</column>
 			<column name="reference_id" type="int unsigned">
 				<constraints nullable="false"/>
 			</column>

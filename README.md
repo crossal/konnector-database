@@ -31,7 +31,4 @@ Managing the Konnector database
 
 * Navigate to the project root
 * Run `$ mvn clean compile liquibase:update -DdatabaseName=konnector_test`
-
-<br/>
-
 * Default databaseName is konnector

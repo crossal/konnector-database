@@ -54,14 +54,6 @@
 					<password>${settings.servers.konnector_database.password}</password>
 					<outputChangeLogFile>src/main/resources/liquibase-outputChangeLog.xml</outputChangeLogFile>
 				</configuration>
-				<!--<configuration>-->
-					<!--<changeLogFile>src/main/resources/db/primary.xml</changeLogFile>-->
-					<!--<driver>com.mysql.cj.jdbc.Driver</driver>-->
-					<!--<url>jdbc:mysql://localhost:3306/konnector_test</url>-->
-					<!--<username>${settings.servers.konnector_database.username}</username>-->
-					<!--<password>${settings.servers.konnector_database.password}</password>-->
-					<!--<outputChangeLogFile>src/main/resources/liquibase-outputChangeLog.xml</outputChangeLogFile>-->
-				<!--</configuration>-->
 			</plugin>
 		</plugins>
 	</build>
