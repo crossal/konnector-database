@@ -9,7 +9,9 @@
 	<version>1.0-SNAPSHOT</version>
 
 	<properties>
-		<databaseName>konnector</databaseName>
+		<databaseName>konnector_test</databaseName>
+		<databasePassword>password</databasePassword>
+		<liquibaseMavenPluginVersion>4.18.0</liquibaseMavenPluginVersion>
 	</properties>
 
 	<dependencies>
@@ -22,7 +24,7 @@
 		<dependency>
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-maven-plugin</artifactId>
-			<version>4.1.0</version>
+			<version>${liquibaseMavenPluginVersion}</version>
 		</dependency>
 	</dependencies>
 
@@ -39,19 +41,19 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.2.0</version>
+				<version>3.3.0</version>
 			</plugin>
 
 			<plugin>
 				<groupId>org.liquibase</groupId>
 				<artifactId>liquibase-maven-plugin</artifactId>
-				<version>3.10.3</version>
+				<version>${liquibaseMavenPluginVersion}</version>
 				<configuration>
 					<changeLogFile>src/main/resources/db/primary.xml</changeLogFile>
 					<driver>com.mysql.cj.jdbc.Driver</driver>
 					<url>jdbc:mysql://localhost:3306/${databaseName}</url>
-					<username>${settings.servers.konnector_database.username}</username>
-					<password>${settings.servers.konnector_database.password}</password>
+					<username>root</username>
+					<password>${databasePassword}</password>
 					<outputChangeLogFile>src/main/resources/liquibase-outputChangeLog.xml</outputChangeLogFile>
 				</configuration>
 			</plugin>

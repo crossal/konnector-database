@@ -6,29 +6,27 @@ Managing the Konnector database
 
 ## How do I get set up?
 
-* Create a Maven master password `$ mvn --encrypt-master-password`
-* Store the encrypted master password in ~/.m2/settings-security.xml
-```
-<settingsSecurity>
-    <master>{password}</master>
-</settingsSecurity>
-```
-* Encrypt the database schema password `$ mvn --encrypt-password`
-* Store the encrypted password in ~/.m2/settings.xml under the servers element
-```
-<settings>
-    <servers>
-        <server>
-            <id>konnector_database</id>
-            <username>root</username>
-            <password>{password}</password>
-        </server>
-    </servers>
-</settings>
-```
+* Install Maven
 
 ## Running liquibase
 
 * Navigate to the project root
+* Run `$ mvn clean compile liquibase:update`
+
+## Running in a MySQL Docker container
+
+* Install Docker
+
+### Locally
+
+* Run `$ docker run --publish 3306:3306 --name konnector-database -e MYSQL_DATABASE='konnector_test' -e MYSQL_ROOT_PASSWORD='password' -d mysql:8.0.31-debian`
 * Run `$ mvn clean compile liquibase:update -DdatabaseName=konnector_test`
-* Default databaseName is konnector
+
+### Production
+
+* Run `$ docker run --publish 3306:3306 --name konnector-database -e MYSQL_DATABASE='konnector' -e MYSQL_ROOT_PASSWORD='<password>' -d mysql:8.0.31-debian`
+* Run `$ mvn clean compile liquibase:update -DdatabaseName=konnector -DdatabasePassword='<password'`
+* Consider removing the previous commands from the history by running something like `history -d $(history 2)` for Linux
+
+
+* To remove any stopped containers and all unused images `$ docker system prune -a`
