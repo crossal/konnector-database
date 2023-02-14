@@ -24,7 +24,7 @@ Managing the Konnector database
 
 ### Production
 
-* Run `$ docker run --publish 3306:3306 --name konnector-database -e MYSQL_DATABASE='konnector' -e MYSQL_ROOT_PASSWORD='<password>' -d mysql:8.0.31-debian` (if RAM is constrained, arguments like `--memory 400m --memory-swap 5G` can also be provided)
+* Run `$ docker run --publish 3306:3306 --name konnector-database -e MYSQL_DATABASE='konnector' -e MYSQL_ROOT_PASSWORD='<password>' -d mysql:8.0.31-debian` (if RAM is constrained, arguments like `--memory 400m --memory-swap 5g` can also be provided)
 * Run `$ mvn clean compile liquibase:update -DdatabaseName=konnector -DdatabasePassword='<password'`
 * Consider removing the previous commands from the history by running something like `history -d $(history 2)` for Linux
 
